@@ -16,7 +16,14 @@ android {
     }
 }
 
+ivi{
+    optInToExperimentalApis = true
+}
+
 dependencies {
+    implementation(project(":template_services_customtheming_api"))
+    implementation(iviDependencies.tomtomToolsCoreTheme)
+    implementation(iviDependencies.tomtomToolsApiResourceresolution)
     implementation(iviDependencies.tomtomToolsApiDatabinding)
     implementation(iviDependencies.tomtomToolsApiLivedata)
     implementation(iviDependencies.tomtomToolsApiUicontrols)

@@ -11,10 +11,15 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:auto="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:auto="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.tomtom.tools.android.api.resourceresolution.ContextExtensionsKt" />
+
+        <import
+            alias="CoreThemeR"
+            type="com.tomtom.tools.android.core.theme.R" />
+
         <variable
             name="viewModel"
             type="com.example.ivi.template.frontends.customfrontend.frontend.ExampleCustomViewModel" />
@@ -56,6 +61,17 @@
             android:textAppearance="?attr/tt_headline_text_style_m"
             android:textColor="?attr/tt_surface_content_color_emphasis_high"
             auto:visibleIfNot="@{viewModel.isTaskPanelOpened}" />
+
+
+        <com.tomtom.tools.android.api.uicontrols.textview.TtTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="?attr/tt_spacing_16"
+            android:gravity="start"
+            android:text="@string/service_status"
+            android:textAlignment="textStart"
+            android:textAppearance="?attr/tt_headline_text_style_m"
+            android:textColor="@{ContextExtensionsKt.getColorByAttr(context, viewModel.serviceRunning ? CoreThemeR.attr.tt_surface_content_color_success : CoreThemeR.attr.tt_surface_content_color_critical)}" />
 
     </LinearLayout>
 </layout>

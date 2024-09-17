@@ -13,12 +13,16 @@ import com.tomtom.ivi.appsuite.gradle.navigation.api.appsuitedefaults.navigation
 import com.tomtom.ivi.appsuite.gradle.systemstatus.api.appsuitedefaults.systemstatus.systemStatusGroup
 import com.tomtom.ivi.appsuite.gradle.userprofiles.api.appsuitedefaults.userprofiles.userProfilesGroup
 import com.tomtom.ivi.appsuite.gradle.vehiclesettings.api.appsuitedefaults.vehiclesettings.vehicleSettingsGroup
+import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
 import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviAppsuite
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviThemeRegistrySourceConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceDependencies
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceHostConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviServiceInterfaceConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.PanelTypesConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.configurators.IviDefaultsGroupsSelectionConfigurator
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
@@ -37,6 +41,18 @@ private val frontendModule = ModuleReference(
     "com.example.ivi",
     "template_frontends_customfrontend",
     "com.example.ivi.template.frontends",
+)
+
+private val themingApiModule = ModuleReference(
+    "com.example.ivi",
+    "template_services_customtheming_api",
+    "com.example.ivi.template.services.customtheming.api",
+)
+
+private val themingPluginModule = ModuleReference(
+    "com.example.ivi",
+    "template_services_customtheming_plugin",
+    "com.example.ivi.template.services.customtheming.plugin",
 )
 
 /**
@@ -58,6 +74,20 @@ val exampleFrontend =
 
 val exampleMenuItem = exampleFrontend.toMenuItem("exampleMenuItem")
 
+val customThemingServiceHost by extra {
+    IviServiceHostConfig(
+        serviceHostBuilderName = "CustomThemingServiceHostBuilder",
+        implementationModule = themingPluginModule,
+        interfaces = listOf(
+            IviServiceInterfaceConfig(
+                serviceName = "CustomThemingService",
+                serviceApiModule = themingApiModule,
+                subPackageName = "customtheming",
+            )
+        ),
+        // dependencies = IviServiceDependencies(required = accountSettingsServiceHost.interfaces)
+    )
+}
 // Theming
 apply(from = rootProject.file("template/themeregistrysources.gradle.kts"))
 
@@ -108,6 +138,7 @@ ivi {
             applyGroups {
                 selectGroups()
             }
+            addHost(customThemingServiceHost)
         }
     }
 }
