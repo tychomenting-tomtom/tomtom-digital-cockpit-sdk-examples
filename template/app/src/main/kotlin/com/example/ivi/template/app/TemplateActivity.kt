@@ -11,6 +11,12 @@
 
 package com.example.ivi.template.app
 
+import com.example.ivi.template.frontends.customfrontend.systemui.CustomSystemUiHost
+import com.tomtom.ivi.platform.framework.api.common.iviinstance.IviInstanceId
 import com.tomtom.ivi.platform.framework.api.product.defaultactivity.DefaultActivity
+import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHost
 
-class TemplateActivity : DefaultActivity()
+class TemplateActivity : DefaultActivity(){
+    override fun createSystemUiHost(iviInstanceId: IviInstanceId): SystemUiHost =
+        CustomSystemUiHost(getDefaultSystemUiHostContext(iviInstanceId))
+}
