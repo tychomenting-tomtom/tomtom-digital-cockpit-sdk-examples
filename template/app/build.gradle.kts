@@ -15,9 +15,11 @@ import com.tomtom.ivi.appsuite.gradle.userprofiles.api.appsuitedefaults.userprof
 import com.tomtom.ivi.appsuite.gradle.vehiclesettings.api.appsuitedefaults.vehiclesettings.vehicleSettingsGroup
 import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviAppsuite
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviThemeRegistrySourceConfig
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.PanelTypesConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.configurators.IviDefaultsGroupsSelectionConfigurator
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -30,6 +32,31 @@ private val templateAppModule = ModuleReference(
     "template_app",
     "com.example.ivi.template.app",
 )
+
+private val frontendModule = ModuleReference(
+    "com.example.ivi",
+    "template_frontends_customfrontend",
+    "com.example.ivi.template.frontends",
+)
+
+/**
+ * Defines the custom panel types.
+ */
+val customPanelTypes = PanelTypesConfig(
+    "CUSTOM_SYSTEM_UI_PANEL_TYPES",
+    frontendModule,
+    "customfrontend.common",
+)
+
+val exampleFrontend =
+    FrontendConfig(
+        frontendBuilderName = "ExampleFrontendBuilder",
+        implementationModule = frontendModule,
+        subPackageName = "customfrontend.frontend",
+        availablePanelTypes = customPanelTypes,
+    )
+
+val exampleMenuItem = exampleFrontend.toMenuItem("exampleMenuItem")
 
 // Theming
 apply(from = rootProject.file("template/themeregistrysources.gradle.kts"))
@@ -52,7 +79,12 @@ ivi {
                 applyGroups {
                     selectGroups()
                 }
-
+                frontends {
+                    add(exampleFrontend)
+                }
+                menuItems {
+                    addFirst(exampleMenuItem to exampleFrontend)
+                }
                 // Configures theming sources.
                 theming {
                     addRegistrySources(
