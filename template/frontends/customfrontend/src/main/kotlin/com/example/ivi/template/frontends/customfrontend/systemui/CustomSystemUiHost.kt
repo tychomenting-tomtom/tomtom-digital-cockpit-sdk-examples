@@ -33,6 +33,10 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.panelTypeSetO
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FixedConstructorFactory
 import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHost
 import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHostContext
+import com.tomtom.ivi.platform.systemui.api.common.systemuihost.SystemUiHostExtension
+import com.tomtom.ivi.platform.systemui.api.common.systemuihost.bindSystemUiView
+import com.tomtom.ivi.platform.systemui.api.stock.systemuihost.extensions.ControlCenterPanelSystemUiHostExtension
+import com.tomtom.ivi.platform.systemui.api.stock.systemuihost.extensions.DebugPanelSystemUiHostExtension
 
 /**
  * The system UI host is the overarching class of the system UI. It's responsible for creating the
@@ -71,11 +75,21 @@ class CustomSystemUiHost(systemUiHostContext: SystemUiHostContext) :
         SettingsPanel::class,
     )
 
+    private lateinit var systemUiHostExtensions: List<SystemUiHostExtension>
+
     override fun onCreate() {
         viewModel = ViewModelProvider(
             viewModelStoreOwner,
             FixedConstructorFactory(coreViewModel),
         )[CustomSystemUiViewModel::class.java]
+
+        systemUiHostExtensions = listOf(
+            ControlCenterPanelSystemUiHostExtension(
+                systemUiHostExtensionContext,
+                viewModel.panelRegistry.iviPanelRegistry,
+            ),
+            DebugPanelSystemUiHostExtension(systemUiHostExtensionContext),
+        )
     }
 
     override fun onSystemUiPresented() {
@@ -85,6 +99,8 @@ class CustomSystemUiHost(systemUiHostContext: SystemUiHostContext) :
     private fun bindSystemUiView(binding: TtiviCustompaneltypeCustomsystemuiBinding) {
         binding.viewModel = viewModel
         binding.panelRegistry = viewModel.panelRegistry
+
+        systemUiHostExtensions.bindSystemUiView(binding)
 
         setIviOnBackPressedCallbacks(listOf(binding.exampleCustomizationTaskPanelStackContainer))
     }
