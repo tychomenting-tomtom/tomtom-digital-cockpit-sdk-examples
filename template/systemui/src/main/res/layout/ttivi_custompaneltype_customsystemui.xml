@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright © 2022 TomTom NV. All rights reserved.
+  ~ Copyright © 2024 TomTom NV. All rights reserved.
   ~
   ~ This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
   ~ used for internal evaluation purposes or commercial use strictly subject to separate
@@ -19,11 +19,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.ivi.template.frontends.customfrontend.systemui.CustomSystemUiViewModel" />
+            type="com.example.ivi.template.systemui.CustomSystemUiViewModel" />
 
         <variable
             name="panelRegistry"
-            type="com.example.ivi.template.frontends.customfrontend.systemui.CustomPanelRegistry" />
+            type="com.example.ivi.template.systemui.CustomPanelRegistry" />
 
         <variable
             name="controlCenterPanelViewModel"

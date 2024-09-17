@@ -79,6 +79,7 @@
             style="?attr/tt_switch_style"
             android:text="@string/day_night"
             android:textAppearance="?attr/tt_headline_text_style_m"
+            android:checked="@{viewModel.isNightMode}"
             android:onCheckedChanged="@{viewModel.listener}" />
 
     </LinearLayout>

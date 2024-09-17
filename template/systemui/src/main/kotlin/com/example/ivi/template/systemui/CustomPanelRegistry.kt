@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 TomTom NV. All rights reserved.
+ * Copyright © 2024 TomTom NV. All rights reserved.
  *
  * This software is the proprietary copyright of TomTom NV and its subsidiaries and may be
  * used for internal evaluation purposes or commercial use strictly subject to separate
@@ -9,7 +9,7 @@
  * immediately return or destroy it.
  */
 
-package com.example.ivi.template.frontends.customfrontend.systemui
+package com.example.ivi.template.systemui
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

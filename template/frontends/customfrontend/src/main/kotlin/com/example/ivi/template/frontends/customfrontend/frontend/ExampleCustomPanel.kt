@@ -46,6 +46,8 @@ internal class ExampleCustomViewModel(panel: ExampleCustomPanel) :
 
     val service = CustomThemingService.createApi(this, panel.frontendContext.iviServiceProvider)
 
+    val isNightMode = service.nightEnabled
+
     val isTaskPanelOpened = panel.isTaskPanelOpened
 
     val serviceRunning = MutableLiveData(false)

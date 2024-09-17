@@ -83,6 +83,6 @@ internal class StockCustomThemingService(iviServiceHostContext: IviServiceHostCo
     }
 
     private companion object {
-        private const val NIGHT_MODE_ENABLED_DEFAULT = false
+        private const val NIGHT_MODE_ENABLED_DEFAULT = true
     }
 }

@@ -11,8 +11,6 @@
 
 package com.example.ivi.template.frontends.customfrontend.common
 
-import com.example.ivi.template.frontends.customfrontend.frontend.ExampleFrontend
-import com.example.ivi.template.frontends.customfrontend.systemui.CustomSystemUiHost
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PLATFORM_PANEL_TYPES
@@ -21,9 +19,6 @@ import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.PanelTypeSet
 
 /**
  * The custom panel type that is the center of this example.
- *
- * The [CustomSystemUiHost] is responsible for displaying this panel type. The [ExampleFrontend]
- * supplies the content by adding a panel of this type.
  */
 abstract class CustomSystemUiPanel(frontendContext: FrontendContext) : Panel(frontendContext)
 
