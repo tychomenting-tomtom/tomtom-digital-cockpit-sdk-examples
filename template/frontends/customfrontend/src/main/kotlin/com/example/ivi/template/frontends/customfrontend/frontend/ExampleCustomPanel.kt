@@ -12,8 +12,11 @@
 package com.example.ivi.template.frontends.customfrontend.frontend
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.ivi.template.frontends.customfrontend.common.CustomSystemUiPanel
 import com.example.ivi.template.frontends.customfrontend.databinding.TtiviCustompaneltypeCustompanelBinding
+import com.example.ivi.template.services.customtheming.api.customtheming.CustomThemingService
+import com.example.ivi.template.services.customtheming.api.customtheming.createApi
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
@@ -32,12 +35,22 @@ internal class ExampleCustomPanel(
 internal class ExampleCustomFragment :
     IviFragment<ExampleCustomPanel, ExampleCustomViewModel>(ExampleCustomViewModel::class) {
 
-    override val viewFactory: ViewFactory<*>? =
+    override val viewFactory: ViewFactory<*> =
         ViewFactory(TtiviCustompaneltypeCustompanelBinding::inflate)
 }
 
 internal class ExampleCustomViewModel(panel: ExampleCustomPanel) :
     FrontendViewModel<ExampleCustomPanel>(panel) {
 
+    val service = CustomThemingService.createApi(this, panel.frontendContext.iviServiceProvider)
+
     val isTaskPanelOpened = panel.isTaskPanelOpened
+
+    val serviceRunning = MutableLiveData(false)
+
+    init {
+        service.serviceAvailable.observe(this){
+            serviceRunning.value = it
+        }
+    }
 }

@@ -16,4 +16,5 @@
     <string name="ttivi_customization_custompaneltype_frontend_panel_header">Custom panel</string>
     <string name="ttivi_customization_custompaneltype_frontend_opened">Frontend is open.</string>
     <string name="ttivi_customization_custompaneltype_frontend_closed">Frontend is closed.</string>
+    <string name="service_status">Service status</string>
 </resources>
