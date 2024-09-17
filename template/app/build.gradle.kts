@@ -17,6 +17,7 @@ import com.tomtom.ivi.buildsrc.environment.ProjectAbis
 import com.tomtom.ivi.platform.gradle.api.common.dependencies.ModuleReference
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviAppsuite
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
+import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviThemeRegistrySourceConfig
 import com.tomtom.ivi.platform.gradle.api.common.iviapplication.configurators.IviDefaultsGroupsSelectionConfigurator
 import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
 
@@ -30,6 +31,19 @@ private val templateAppModule = ModuleReference(
     "com.example.ivi.template.app",
 )
 
+// Theming
+apply(from = rootProject.file("template/themeregistrysources.gradle.kts"))
+
+val customCoreComponentsThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customCommunicationsThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customHvacThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customMainMenuThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customMediaThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customNavAppComponentsThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customSystemStatusThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val customSystemUiThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+val defaultThemeComponentsSelectorThemeRegistrySource: IviThemeRegistrySourceConfig by project.extra
+
 ivi {
     application {
         enabled = true
@@ -37,6 +51,24 @@ ivi {
             create(IviInstanceIdentifier.default) {
                 applyGroups {
                     selectGroups()
+                }
+
+                // Configures theming sources.
+                theming {
+                    addRegistrySources(
+                        // These are the theming registry sources per IVI domains.
+                        customCoreComponentsThemeRegistrySource,
+                        customCommunicationsThemeRegistrySource,
+                        customHvacThemeRegistrySource,
+                        customMainMenuThemeRegistrySource,
+                        customMediaThemeRegistrySource,
+                        customNavAppComponentsThemeRegistrySource,
+                        customSystemStatusThemeRegistrySource,
+                        customSystemUiThemeRegistrySource,
+                        // While new theming sources are added, this source selects the defined
+                        // theming categories as the default theming sources.
+                        defaultThemeComponentsSelectorThemeRegistrySource,
+                    )
                 }
             }
         }
