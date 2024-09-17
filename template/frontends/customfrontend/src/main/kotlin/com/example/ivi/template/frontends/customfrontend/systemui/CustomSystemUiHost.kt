@@ -13,7 +13,7 @@ package com.example.ivi.template.frontends.customfrontend.systemui
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.ivi.template.frontends.customfrontend.common.CustomSystemUiPanel
-import com.example.ivi.example.customization.custompaneltype.databinding.TtiviCustompaneltypeCustomsystemuiBinding
+import com.example.ivi.template.frontends.customfrontend.databinding.TtiviCustompaneltypeCustomsystemuiBinding
 import com.tomtom.ivi.platform.framework.api.common.annotations.IviExperimental
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.ControlCenterPanel
 import com.tomtom.ivi.platform.frontend.api.common.frontend.panels.DebugPanel

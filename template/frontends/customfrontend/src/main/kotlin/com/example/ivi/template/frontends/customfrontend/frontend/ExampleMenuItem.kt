@@ -11,8 +11,7 @@
 
 package com.example.ivi.template.frontends.customfrontend.frontend
 
-import com.example.ivi.example.customization.custompaneltype.R
-import com.example.ivi.template.frontends.customfrontend.frontend.ExampleFrontend
+import com.example.ivi.template.frontends.customfrontend.R
 import com.tomtom.ivi.platform.mainmenu.api.common.menu.MenuItem
 
 val exampleMenuItem =

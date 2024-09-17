@@ -9,22 +9,14 @@
  * immediately return or destroy it.
  */
 
-import com.tomtom.ivi.buildsrc.dependencies.ExampleModuleReference
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.FrontendConfig
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.IviInstanceIdentifier
-import com.tomtom.ivi.platform.gradle.api.common.iviapplication.config.PanelTypesConfig
-import com.tomtom.ivi.platform.gradle.api.framework.config.ivi
-
-
 android {
-    namespace = "com.example.ivi.example.customization.custompaneltype"
+    namespace = "com.example.ivi.template.frontends.customfrontend"
     buildFeatures {
         dataBinding = true
     }
 }
 
 dependencies {
-
     implementation(iviDependencies.tomtomToolsApiDatabinding)
     implementation(iviDependencies.tomtomToolsApiLivedata)
     implementation(iviDependencies.tomtomToolsApiUicontrols)

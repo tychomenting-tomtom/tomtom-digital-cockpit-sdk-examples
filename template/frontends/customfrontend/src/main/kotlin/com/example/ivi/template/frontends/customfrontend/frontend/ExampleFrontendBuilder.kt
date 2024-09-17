@@ -11,7 +11,6 @@
 
 package com.example.ivi.template.frontends.customfrontend.frontend
 
-import com.example.ivi.template.frontends.customfrontend.frontend.ExampleFrontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.Frontend
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendBuilder
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
