@@ -13,6 +13,13 @@ android {
     namespace = "com.example.ivi.template.services.customtheming.plugin"
 }
 
+ivi{
+    optInToExperimentalApis = true
+}
+
 dependencies {
     api(project(":template_services_customtheming_api"))
+
+    implementation(libraries.iviPlatformThemingApServiceTheming)
+    implementation(libraries.iviPlatformThemingApiThemingStock)
 }

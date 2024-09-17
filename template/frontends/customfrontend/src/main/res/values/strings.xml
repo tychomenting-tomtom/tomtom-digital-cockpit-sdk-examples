@@ -17,4 +17,5 @@
     <string name="ttivi_customization_custompaneltype_frontend_opened">Frontend is open.</string>
     <string name="ttivi_customization_custompaneltype_frontend_closed">Frontend is closed.</string>
     <string name="service_status">Service status</string>
+    <string name="day_night">Night mode enabled:</string>
 </resources>

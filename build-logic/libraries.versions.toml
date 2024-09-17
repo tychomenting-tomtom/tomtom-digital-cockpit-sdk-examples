@@ -75,6 +75,7 @@ iviPlatformTelecomApiServiceTelecom = { module = "com.tomtom.ivi.platform:platfo
 iviPlatformThemingApiCommonAttributes = { module = "com.tomtom.ivi.platform:platform_theming_api_common_attributes", version.ref = "iviPlatform" }
 iviPlatformThemingApiCommonRegistry = { module = "com.tomtom.ivi.platform:platform_theming_api_common_registry", version.ref = "iviPlatform" }
 iviPlatformThemingApiThemingGeneric = { module = "com.tomtom.ivi.platform:platform_theming_api_theming_generic", version.ref = "iviPlatform" }
+iviPlatformThemingApServiceTheming = { module = "com.tomtom.ivi.platform:platform_theming_api_service_theming", version.ref = "iviPlatform" }
 iviPlatformThemingApiThemingStock = { module = "com.tomtom.ivi.platform:platform_theming_api_theming_stock", version.ref = "iviPlatform" }
 iviPlatformToolsApiTestingFunctional = { module = "com.tomtom.ivi.platform:platform_tools_api_testing_functional", version.ref = "iviPlatform" }
 iviPlatformVpaApiServiceVpaadaptation = { module = "com.tomtom.ivi.platform:platform_vpa_api_service_vpaadaptation", version.ref = "iviPlatform" }

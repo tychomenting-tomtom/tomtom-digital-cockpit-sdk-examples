@@ -11,12 +11,14 @@
 
 package com.example.ivi.template.frontends.customfrontend.frontend
 
+import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ivi.template.frontends.customfrontend.common.CustomSystemUiPanel
 import com.example.ivi.template.frontends.customfrontend.databinding.TtiviCustompaneltypeCustompanelBinding
 import com.example.ivi.template.services.customtheming.api.customtheming.CustomThemingService
 import com.example.ivi.template.services.customtheming.api.customtheming.createApi
+import com.tomtom.ivi.platform.framework.api.ipc.iviservice.queueOrRun
 import com.tomtom.ivi.platform.frontend.api.common.frontend.FrontendContext
 import com.tomtom.ivi.platform.frontend.api.common.frontend.IviFragment
 import com.tomtom.ivi.platform.frontend.api.common.frontend.viewmodels.FrontendViewModel
@@ -47,6 +49,14 @@ internal class ExampleCustomViewModel(panel: ExampleCustomPanel) :
     val isTaskPanelOpened = panel.isTaskPanelOpened
 
     val serviceRunning = MutableLiveData(false)
+
+    val listener = OnCheckedChangeListener { _, isChecked ->
+        if (isChecked) {
+            service.queueOrRun { it.setNightModeAsync { } }
+        } else {
+            service.queueOrRun { it.setDayModeAsync { } }
+        }
+    }
 
     init {
         service.serviceAvailable.observe(this){
