@@ -164,6 +164,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":template_systemui"))
+
     implementation(iviDependencies.tomtomAutomotiveAndroidCar)
     implementation(libraries.iviPlatformThemingApiCommonAttributes)
     implementation(libraries.iviPlatformFrameworkApiProductDebugPermissions)
